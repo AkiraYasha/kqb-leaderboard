@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+      function drawVisualization() {
+        var data = google.visualization.arrayToDataTable(%%DATA%%);
+
+        var options = {
+            title : 'Leaderboard',
+            vAxes: {
+                0: {
+                    title: 'Players'
+                },
+                1: {                    
+                    minValue: 0,
+                    maxValue: 1,
+                    gridlines: {
+                        count: 0
+                    },
+                    ticks: []
+                }
+            },
+            hAxis: {
+                title: 'Rank',
+                slantedText: true,
+                showTextEvery: 1,
+            },
+            series: {
+                0: { type: 'line', targetAxisIndex: 0 },
+                1: { type: 'steppedArea', targetAxisIndex: 0, color: '#8e7cc3' },
+                2: { type: 'steppedArea', targetAxisIndex: 1, color: '#783f04', areaOpacity: 0.2, lineWidth: 0, visibleInLegend: false },
+                3: { type: 'steppedArea', targetAxisIndex: 1, color: '#cccccc', areaOpacity: 0.2, lineWidth: 0, visibleInLegend: false },
+                4: { type: 'steppedArea', targetAxisIndex: 1, color: '#f1c232', areaOpacity: 0.2, lineWidth: 0, visibleInLegend: false },
+                5: { type: 'steppedArea', targetAxisIndex: 1, color: '#46bdc6', areaOpacity: 0.2, lineWidth: 0, visibleInLegend: false },
+                6: { type: 'steppedArea', targetAxisIndex: 1, color: '#674ea7', areaOpacity: 0.2, lineWidth: 0, visibleInLegend: false },
+            }
+        }
+
+        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 100%; height: 100%;"></div>
+  </body>
+</html>
